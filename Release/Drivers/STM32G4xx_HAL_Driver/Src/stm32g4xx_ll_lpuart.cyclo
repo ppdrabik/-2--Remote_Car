@@ -1,0 +1,3 @@
+stm32g4xx_ll_lpuart.c:132:13:LL_LPUART_DeInit	2
+stm32g4xx_ll_lpuart.c:170:13:LL_LPUART_Init	4
+stm32g4xx_ll_lpuart.c:255:6:LL_LPUART_StructInit	1

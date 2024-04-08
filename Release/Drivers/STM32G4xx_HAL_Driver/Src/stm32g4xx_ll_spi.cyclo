@@ -1,0 +1,7 @@
+stm32g4xx_ll_spi.c:133:13:LL_SPI_DeInit	4
+stm32g4xx_ll_spi.c:200:13:LL_SPI_Init	4
+stm32g4xx_ll_spi.c:278:6:LL_SPI_StructInit	1
+stm32g4xx_ll_spi.c:382:13:LL_I2S_DeInit	1
+stm32g4xx_ll_spi.c:397:13:LL_I2S_Init	5
+stm32g4xx_ll_spi.c:504:6:LL_I2S_StructInit	1
+stm32g4xx_ll_spi.c:526:6:LL_I2S_ConfigPrescaler	1

@@ -1,0 +1,4 @@
+LoRa.c:13:13:SPI_Write_8	2
+LoRa.c:20:6:LoRa_Write	1
+LoRa.c:30:9:LoRa_Read	2
+LoRa.c:45:6:LoRa_Init	1

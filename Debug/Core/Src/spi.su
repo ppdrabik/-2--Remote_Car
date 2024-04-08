@@ -1,0 +1,7 @@
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_bus.h:451:22:LL_AHB2_GRP1_EnableClock	24	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_bus.h:913:22:LL_APB1_GRP1_EnableClock	24	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_spi.h:358:22:LL_SPI_Enable	16	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_spi.h:370:22:LL_SPI_Disable	16	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_spi.h:426:22:LL_SPI_SetStandard	16	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_spi.h:874:22:LL_SPI_DisableNSSPulseMgt	16	static
+../Core/Src/spi.c:28:6:MX_SPI3_Init	72	static
