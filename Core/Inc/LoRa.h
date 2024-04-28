@@ -24,6 +24,12 @@ typedef enum {
 	STATUS_ERROR = 1
 }e_lora_status;
 
+typedef enum
+{
+  RESETT = 0,
+  SETT = 1
+}e_bool;
+
 /*
  * RegOpMode Mode Bits
  */
@@ -51,7 +57,9 @@ typedef enum {
 	khz_31_25,
 	khz_41_7,
 	khz_62_5,
-	khz_125
+	khz_125,
+	khz_250,
+	khz_500
 }e_bandwidth;
 
 /*
@@ -143,6 +151,7 @@ typedef enum {
 #define ADDR_RegPktRssiValue			0x1A
 #define	ADDR_RegModemConfig1			0x1D
 #define ADDR_RegModemConfig2			0x1E
+#define ADDR_RegModemStat				0x18
 #define ADDR_RegSymbTimeoutL			0x1F
 #define ADDR_RegPreambleMsb				0x20
 #define ADDR_RegPreambleLsb				0x21
@@ -150,19 +159,27 @@ typedef enum {
 #define ADDR_RegDioMapping1				0x40
 #define ADDR_RegDioMapping2				0x41
 #define ADDR_RegVersion					0x42
+#define ADDR_RegRssiValue				0x1B
 
 /**** RegOpMode Bits ****/
 #define LONGRANGEMOE_MASK 		1<<7
 #define LORAMODE 				LONGRANGEMOE_MASK
 
 
-void LoRa_Write(uint8_t reg_addr, uint8_t reg_value);
-void LoRa_Init();
-uint8_t LoRa_Read(uint8_t reg_addr);
+uint8_t lora_read(uint8_t reg_addr);
+void lora_write(uint8_t reg_addr, uint8_t reg_value);
 void lora_set_spreading_factor(e_spreading_factor SF);
 void lora_set_coding_rate(e_coding_rate coding_rate);
 void lora_set_bandwidth(e_bandwidth bandwidth);
-void lora_transmit_8(uint8_t data, uint8_t length);
-uint8_t lora_recieve_8();
+void lora_set_crc(e_bool set_rest);
+void lora_init_transmit();
+void lora_init_receive();
+void lora_transmit_8(uint8_t *data, uint8_t length);
+void lora_recieve_8(int8_t *recieved_data);
+void LoRa_Init();
+void lora_set_pa_boost(e_bool set_rest);
+void lora_set_max_output_power(uint8_t set_rest);
+void lora_set_output_power(uint8_t set_rest);
+void lora_set_lna_gain(uint8_t set_rest);
 
 #endif /* SRC_LORA_H_ */

@@ -1,0 +1,4 @@
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_lpuart.h:1672:26:LL_LPUART_IsActiveFlag_TXE_TXFNF	16	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_lpuart.h:2548:22:LL_LPUART_TransmitData8	16	static
+../Core/Src/print.c:10:6:Transmit_uart	24	static
+../Core/Src/print.c:19:5:__io_putchar	16	static

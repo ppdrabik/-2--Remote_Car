@@ -1,4 +1,9 @@
-tim.c:30:6:MX_TIM2_Init	7
-tim.c:88:6:HAL_TIM_Base_MspInit	2
-tim.c:103:6:HAL_TIM_MspPostInit	2
-tim.c:132:6:HAL_TIM_Base_MspDeInit	2
+stm32g4xx_ll_bus.h:451:22:LL_AHB2_GRP1_EnableClock	1
+stm32g4xx_ll_bus.h:913:22:LL_APB1_GRP1_EnableClock	1
+stm32g4xx_ll_tim.h:2203:22:LL_TIM_EnableARRPreload	1
+stm32g4xx_ll_tim.h:2993:22:LL_TIM_OC_DisableFast	10
+stm32g4xx_ll_tim.h:3045:22:LL_TIM_OC_EnablePreload	10
+stm32g4xx_ll_tim.h:3954:22:LL_TIM_SetClockSource	1
+stm32g4xx_ll_tim.h:4007:22:LL_TIM_SetTriggerOutput	1
+stm32g4xx_ll_tim.h:4113:22:LL_TIM_DisableMasterSlaveMode	1
+tim.c:28:6:MX_TIM2_Init	1

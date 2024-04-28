@@ -1,0 +1,16 @@
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_tim.h:3217:22:LL_TIM_OC_SetCompareCH1	16	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_tim.h:3235:22:LL_TIM_OC_SetCompareCH2	16	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_gpio.h:894:22:LL_GPIO_SetOutputPin	16	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_gpio.h:923:22:LL_GPIO_ResetOutputPin	16	static
+../Core/Src/stering.c:28:6:start	8	static
+../Core/Src/stering.c:35:6:taillamps_turn_on	8	static
+../Core/Src/stering.c:41:6:taillamps_turn_off	8	static
+../Core/Src/stering.c:47:6:move_forward	8	static
+../Core/Src/stering.c:55:6:move_revers	8	static
+../Core/Src/stering.c:63:6:move_right	8	static
+../Core/Src/stering.c:70:6:move_left	8	static
+../Core/Src/stering.c:77:6:no_move	8	static
+../Core/Src/stering.c:82:6:set_motor_speed	24	static
+../Core/Src/stering.c:119:6:set_motor_direction	16	static
+../Core/Src/stering.c:152:6:get_axis_position	16	static
+../Core/Src/stering.c:164:6:loop	16	static
