@@ -21,9 +21,10 @@
  *
  */
 
-struct axis_s axis;
-struct motor_state_s state;
-struct duty_cycle_s duty_cycle;
+axis_s axis;
+motor_state_s state;
+duty_cycle_s duty_cycle;
+
 
 void start()
 {
@@ -32,17 +33,6 @@ void start()
 	  loop(&state, &duty_cycle);
 }
 
-void taillamps_turn_on()
-{
-	LL_GPIO_SetOutputPin(GPIOB, LL_GPIO_PIN_13);
-	LL_GPIO_SetOutputPin(GPIOB, LL_GPIO_PIN_14);
-}
-
-void taillamps_turn_off()
-{
-	LL_GPIO_ResetOutputPin(GPIOB, LL_GPIO_PIN_13);
-	LL_GPIO_ResetOutputPin(GPIOB, LL_GPIO_PIN_14);
-}
 
 void move_forward()
 {
@@ -57,7 +47,6 @@ void move_revers()
 	LL_GPIO_ResetOutputPin(GPIOB, EN1_Pin);
 	LL_GPIO_SetOutputPin(GPIOB, EN2_Pin);
 	set_motor_speed(&axis, &state, &duty_cycle);
-	//taillamps_turn_on();
 }
 
 void move_right()
@@ -79,111 +68,110 @@ void no_move()
 	set_motor_speed(&axis, &state, &duty_cycle);
 }
 
-void set_motor_speed(struct axis_s *axis, struct motor_state_s *state, struct duty_cycle_s *duty_cycle)
+void set_motor_speed(axis_s *axis, motor_state_s *state, duty_cycle_s *duty_cycle)
 {
-	if(state->state_up_down == FORWARD)
+	if(state->up_down == UP)
 	{
 		duty_cycle->up_down = 70;
-		LL_TIM_OC_SetCompareCH1(TIM2,duty_cycle->up_down);
+		LL_TIM_OC_SetCompareCH1(TIM2, duty_cycle->up_down);
 	}
-	else if (state->state_up_down == REVERS)
+	else if (state->up_down == DOWN)
 	{
 		duty_cycle->up_down = 70;
-		LL_TIM_OC_SetCompareCH1(TIM2,duty_cycle->up_down);
+		LL_TIM_OC_SetCompareCH1(TIM2, duty_cycle->up_down);
 ;
 	}
-	else if (state->state_up_down == IDLE)
+	else if (state->up_down == IDLE)
 	{
 		duty_cycle->up_down = 0;
-		LL_TIM_OC_SetCompareCH1(TIM2,0);
+		LL_TIM_OC_SetCompareCH1(TIM2, 0);
 	}
 
-	if (state->state_left_right == RIGHT)
+	if (state->left_right == RIGHT)
 	{
 		duty_cycle->left_right = 50;
-		LL_TIM_OC_SetCompareCH2(TIM2,duty_cycle->left_right);
+		LL_TIM_OC_SetCompareCH2(TIM2, duty_cycle->left_right);
 	}
-	else if (state->state_left_right == LEFT)
+	else if (state->left_right == LEFT)
 	{
 		duty_cycle->left_right = 50;
-		LL_TIM_OC_SetCompareCH2(TIM2,duty_cycle->left_right);
+		LL_TIM_OC_SetCompareCH2(TIM2, duty_cycle->left_right);
 	}
-	else if (state->state_left_right == IDLE)
+	else if (state->left_right == IDLE)
 	{
 		duty_cycle->left_right = 0; // RIGHT
-		LL_TIM_OC_SetCompareCH2(TIM2,0);
+		LL_TIM_OC_SetCompareCH2(TIM2, 0);
 	}
 }
 
 
-void set_motor_direction(struct axis_s *axis, struct motor_state_s *state)
+void set_motor_direction(axis_s *axis, motor_state_s *state)
 {
-
 	if(axis->y == 1)
 	{
-		state->state_up_down = FORWARD;
+		state->up_down = UP;
 	}
 	else if (axis->y == -1)
 	{
-		state->state_up_down = REVERS;
+		state->up_down = DOWN;
 	}
 	else
 	{
-		state->state_up_down = IDLE;
+		state->up_down = IDLE;
 	}
-
 
 	if(axis->x == 1)
 	{
-		state->state_left_right = RIGHT;;
+		state->left_right = RIGHT;;
 	}
 	else if (axis->x == -1)
 	{
-		state->state_left_right = LEFT;
+		state->left_right = LEFT;
 	}
-	else{
-		state->state_left_right = IDLE;
+	else
+	{
+		state->left_right = IDLE;
 	}
-	//printf("Motor state up: %d\n\r", state->state_up_down);
-	//printf("Motor state left: %d\n\r", state->state_left_right);
+
+	//printf("Motor state up: %d\n\r", state->up_down);
+	//printf("Motor state left: %d\n\r", state->left_right);
 }
 
 
-void get_axis_position(struct axis_s *axis)
+void get_axis_position(axis_s *axis)
 {
-
 	lora_recieve_8(axis->recieved_data);
 	axis->x = axis->recieved_data[0];
 	axis->y = axis->recieved_data[1];
-	//lora_transmit_8(&ack, 1);
-	printf("Axis x: %d\n\r", axis->x);
-	printf("Axis y: %d\n\r", axis->y);
+
+	//printf("Axis x: %d\n\r", axis->x);
+	//printf("Axis y: %d\n\r", axis->y);
 }
 
 
-void loop(struct motor_state_s *state, struct duty_cycle_s *duty_cycle)
+void loop(motor_state_s *state, duty_cycle_s *duty_cycle)
 {
-	switch (state->state_up_down)
+	switch (state->up_down)
 	{
 	case IDLE:
 		no_move();
 		printf("IDLE:%u \n\r", duty_cycle->up_down);
 		break;
 
-	case FORWARD:
+	case UP:
 		move_forward();
-		printf("FORWARD:%u \n\r", duty_cycle->up_down);
+		printf("UP:%u \n\r", duty_cycle->up_down);
 		break;
 
-	case REVERS:
+	case DOWN:
 		move_revers();
-		printf("REVERS:%u \n\r", duty_cycle->up_down);
+		printf("DOWN:%u \n\r", duty_cycle->up_down);
 		break;
 
 	default: break;
 	}
 
-	switch (state->state_left_right)
+	switch (state->left_right)
 	{
 	case IDLE:
 		no_move();

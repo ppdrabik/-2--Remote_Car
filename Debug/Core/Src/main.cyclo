@@ -22,5 +22,5 @@ stm32g4xx_ll_pwr.h:496:22:LL_PWR_DisableUCPDDeadBattery	1
 stm32g4xx_ll_tim.h:2023:22:LL_TIM_EnableCounter	1
 stm32g4xx_ll_tim.h:2604:22:LL_TIM_CC_EnableChannel	1
 main.c:69:5:main	1
-main.c:136:6:SystemClock_Config	6
-main.c:187:6:Error_Handler	1
+main.c:148:6:SystemClock_Config	6
+main.c:199:6:Error_Handler	1

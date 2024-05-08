@@ -54,7 +54,7 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-uint8_t status = 0;
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -97,26 +97,35 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-
-  LL_APB1_GRP1_ForceReset(LL_APB1_GRP1_PERIPH_SPI3);
   MX_GPIO_Init();
   MX_LPUART1_UART_Init();
-  LL_APB1_GRP1_ReleaseReset(LL_APB1_GRP1_PERIPH_SPI3);
   MX_SPI3_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  LoRa_Init();
- // lora_init_receive();
-  /* USER CODE END 2 */
 
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
+
+  lora_s lora =
+  {
+	.bandwidth = khz_125,
+	.sf = SF_10,
+	.pa_boost = SET_BIT,
+	.max_power = 3,
+	.output_power = 14,
+	.lna_gain = 6
+  };
+
+  lora_init(&lora);
+  lora_init_receive();
 
 
   LL_TIM_EnableCounter(TIM2);
   LL_TIM_CC_EnableChannel(TIM2,LL_TIM_CHANNEL_CH1);
   LL_TIM_CC_EnableChannel(TIM2,LL_TIM_CHANNEL_CH2);
 
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
 
   while (1)
   {
@@ -127,7 +136,6 @@ int main(void)
   }
   /* USER CODE END 3 */
 }
-
 
 /**
   * @brief System Clock Configuration

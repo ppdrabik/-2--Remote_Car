@@ -12,48 +12,48 @@
 #include <main.h>
 
 
-
-
 typedef enum
 {
 	IDLE,
-	FORWARD,
+	UP,
 	LEFT,
 	RIGHT,
-	REVERS
+	DOWN
 }state_e;
 
-struct axis_s
+
+typedef struct
 {
 	int8_t x;
 	int8_t y;
 	int8_t recieved_data[2];
-};
+}axis_s;
 
-struct motor_state_s
+
+typedef struct
 {
-	state_e state_up_down;
-	state_e state_left_right;
-	state_e current_state;
-};
+	state_e up_down;
+	state_e left_right;
+}motor_state_s;
 
-struct duty_cycle_s
+
+typedef struct
 {
 	uint8_t up_down;
 	uint8_t left_right;
-};
+}duty_cycle_s;
 
-void taillamps_turn_on();
-void taillamps_turn_off();
-void move_forward();
-void move_revers();
+
+void loop(motor_state_s *state, duty_cycle_s *duty_cycle);
+void start();
+void move_up();
+void move_down();
 void move_right();
 void move_left();
 void no_move();
-void set_motor_speed(struct axis_s *axis, struct motor_state_s *state, struct duty_cycle_s *duty_cycle);
-void set_motor_direction(struct axis_s *axis, struct motor_state_s *state);
-void get_axis_position(struct axis_s *axis);
-void loop(struct motor_state_s *state, struct duty_cycle_s *duty_cycle);
-void start();
+void set_motor_speed(axis_s *axis, motor_state_s *state, duty_cycle_s *duty_cycle);
+void set_motor_direction(axis_s *axis, motor_state_s *state);
+void get_axis_position(axis_s *axis);
+
 
 #endif /* INC_STERING_H_ */
