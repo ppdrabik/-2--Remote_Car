@@ -115,9 +115,6 @@ void set_motor_direction(axis_s *axis, motor_state_s *state)
 	{
 		state->left_right = IDLE;
 	}
-
-	//printf("Motor state up: %d\n\r", state->up_down);
-	//printf("Motor state left: %d\n\r", state->left_right);
 }
 
 
@@ -126,9 +123,6 @@ void get_axis_position(axis_s *axis)
 	lora_recieve_8(axis->recieved_data);
 	axis->x = axis->recieved_data[0];
 	axis->y = axis->recieved_data[1];
-
-	//printf("Axis x: %d\n\r", axis->x);
-	//printf("Axis y: %d\n\r", axis->y);
 }
 
 
