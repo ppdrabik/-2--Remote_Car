@@ -1,25 +1,8 @@
-/*
- * stering.c
- *
- *  Created on: Apr 10, 2024
- *      Author: ppdra
- */
 
 #include "LoRa.h"
 #include "stering.h"
 #include "print.h"
-/*
- *
- *	IDLE motor
- *	Start motor / Stop motor
- *	Speed of motor
- *	Move up / Move down
- *	Move left / Move right
- *
- *	Data: X-axis, Y-axis
- *
- *
- */
+
 
 axis_s axis;
 motor_state_s state;
