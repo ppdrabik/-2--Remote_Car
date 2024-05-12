@@ -1,7 +1,4 @@
-
-
-
-
+Car controlled by simple web app with LoRa module to send and recive data.
 
 Project components:
 - STM32G491RE
